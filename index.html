@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEONGRID // Cyberpunk Tetris</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA DE LOGIN / MENU PRINCIPAL -->
+    <div id="menuScreen" class="screen active">
+        <h1>NEON<span>GRID</span></h1>
+        <div class="cyber-card">
+            <div class="input-group">
+                <label for="playerName">IDENTIFIQUE-SE (NOME):</label>
+                <input type="text" id="playerName" maxlength="10" placeholder="CYBER_RUNNER" autocomplete="off">
+            </div>
+            <div style="text-align: center; margin-top: 25px;">
+                <button id="startBtn" class="btn-cyber">INICIAR CONEXÃO</button>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3 style="font-family: 'Orbitron', sans-serif; color: var(--neon-blue); font-size: 0.9rem; text-transform: uppercase; border-bottom: 1px solid rgba(0,240,255,0.2); padding-bottom: 5px;">RANKING LOCAL</h3>
+                <table class="leaderboard" id="menuLeaderboard">
+                    <thead>
+                        <tr>
+                            <th>POS</th>
+                            <th>RUNNER</th>
+                            <th>SCORE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Preenchido dinamicamente via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA DE JOGO -->
+    <div id="gameScreen" class="screen">
+        <h1>NEON<span>GRID</span></h1>
+        <div class="game-container">
+            <!-- Grade Principal -->
+            <div class="grid-panel">
+                <canvas id="gameCanvas" width="600" height="600"></canvas>
+            </div>
+
+            <!-- Painel Lateral HUD -->
+            <div class="side-panels">
+                <div class="hud-panel">
+                    <h3>RUNNER</h3>
+                    <div id="hudPlayerName" class="hud-val" style="font-size: 1.2rem; color: var(--neon-blue);">CYBER_RUNNER</div>
+                </div>
+
+                <div class="hud-panel">
+                    <h3>SCORE</h3>
+                    <div id="hudScore" class="hud-val">0</div>
+                </div>
+
+                <div class="hud-panel">
+                    <h3>PRÓXIMA PEÇA</h3>
+                    <canvas id="nextCanvas" width="150" height="150"></canvas>
+                </div>
+
+                <div class="hud-panel">
+                    <h3>LINHAS</h3>
+                    <div id="hudLines" class="hud-val">0</div>
+                </div>
+
+                <div class="hud-panel">
+                    <h3>CONTROLES</h3>
+                    <div class="controls-hint">
+                        <span>[←] [→]</span> Mover<br>
+                        <span>[↓]</span> Queda Rápida<br>
+                        <span>[ESPAÇO]</span> Girar Peça<br>
+                        <button id="toggleMusicBtn" class="btn-cyber" style="font-size: 0.75rem; padding: 4px 8px; margin-top: 10px; width: 100%;">MÚSICA: OFF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA DE GAME OVER -->
+    <div id="gameOverScreen" class="screen">
+        <h1 style="text-shadow: 0 0 10px var(--neon-magenta);">CONEXÃO<span>PERDIDA</span></h1>
+        <div class="cyber-card" style="width: 100%; max-width: 400px; text-align: center;">
+            <p style="font-size: 1.2rem; color: var(--neon-magenta); font-family: 'Orbitron', sans-serif; margin-bottom: 10px;">GAME OVER</p>
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">Sua Pontuação: <span id="finalScore" style="color: var(--neon-blue); font-weight: bold; font-size: 1.4rem;">0</span></p>
+            
+            <button id="retryBtn" class="btn-cyber" style="width: 100%; margin-bottom: 25px;">RECONECTAR</button>
+            
+            <h3 style="font-family: 'Orbitron', sans-serif; color: var(--neon-blue); font-size: 0.9rem; text-transform: uppercase; border-bottom: 1px solid rgba(0,240,255,0.2); padding-bottom: 5px; text-align: left;">RANKING ATUALIZADO</h3>
+            <table class="leaderboard" id="endLeaderboard">
+                <thead>
+                    <tr>
+                        <th>POS</th>
+                        <th>RUNNER</th>
+                        <th>SCORE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Preenchido dinamicamente via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="audio.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

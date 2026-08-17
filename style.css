@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap');
+
+:root {
+    --bg-color: #0a0b10;
+    --neon-blue: #00f0ff;
+    --neon-magenta: #ff007f;
+    --neon-green: #00ff66;
+    --neon-yellow: #ffe600;
+    --grid-bg: #12131e;
+    --cyber-panel: rgba(18, 19, 30, 0.85);
+    --border-glow: 0 0 10px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.2);
+    --magenta-glow: 0 0 10px rgba(255, 0, 127, 0.4), inset 0 0 5px rgba(255, 0, 127, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(26, 21, 44, 0.5) 0%, transparent 80%),
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 100%, 100% 4px, 6px 100%;
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Telas */
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    padding: 10px;
+    max-height: 98vh;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Títulos Neon */
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6), 0 0 20px rgba(0, 240, 255, 0.4), 0 0 30px rgba(0, 240, 255, 0.2);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+h1 span {
+    color: var(--neon-magenta);
+    text-shadow: 0 0 8px rgba(255, 0, 127, 0.6), 0 0 20px rgba(255, 0, 127, 0.4);
+}
+
+/* Painéis Cyberpunk */
+.cyber-card {
+    background: var(--cyber-panel);
+    border: 2px solid var(--neon-blue);
+    box-shadow: var(--border-glow);
+    padding: 30px;
+    border-radius: 4px;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.cyber-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--neon-blue);
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* Formulários */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 280px;
+}
+
+.input-group label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: var(--neon-blue);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+input[type="text"] {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    padding: 12px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
+/* Botões Cyber */
+.btn-cyber {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    background: transparent;
+    border: 1px solid var(--neon-magenta);
+    padding: 12px 30px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    box-shadow: var(--magenta-glow);
+    clip-path: polygon(0 0, 90% 0, 100% 10px, 100% 100%, 10% 100%, 0 90%);
+}
+
+.btn-cyber:hover {
+    background: var(--neon-magenta);
+    box-shadow: 0 0 20px rgba(255, 0, 127, 0.8);
+    text-shadow: 0 0 5px #fff;
+}
+
+/* Layout do Jogo */
+.game-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Painel do Grid do Jogo */
+.grid-panel {
+    position: relative;
+    border: 3px solid var(--neon-blue);
+    box-shadow: var(--border-glow);
+    background: var(--grid-bg);
+}
+
+#gameCanvas {
+    display: block;
+    background: #08090f;
+}
+
+/* Linha Limite Superior Crítica */
+.grid-panel::after {
+    content: 'CRITICAL LIMIT';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-magenta);
+    box-shadow: 0 0 8px var(--neon-magenta);
+    display: block;
+    color: var(--neon-magenta);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 8px;
+    padding-left: 5px;
+    letter-spacing: 1px;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+/* Painéis de Status Lateral */
+.side-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 250px;
+}
+
+.hud-panel {
+    background: var(--cyber-panel);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.15);
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.hud-panel h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    color: var(--neon-blue);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    padding-bottom: 4px;
+}
+
+.hud-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+}
+
+/* Canvas de Pré-visualização da Peça */
+#nextCanvas {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    display: block;
+    margin: 10px auto 0 auto;
+}
+
+/* Tabela de Ranking */
+.leaderboard {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+.leaderboard th, .leaderboard td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.leaderboard th {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--neon-blue);
+}
+
+.leaderboard tr:nth-child(1) td {
+    color: var(--neon-yellow);
+    text-shadow: 0 0 5px rgba(255, 230, 0, 0.4);
+}
+
+/* Rodapé / Instruções */
+.controls-hint {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #8a8d9a;
+    line-height: 1.4;
+}
+
+.controls-hint span {
+    color: var(--neon-blue);
+    font-weight: bold;
+}
